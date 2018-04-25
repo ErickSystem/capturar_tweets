@@ -1,2 +1,2 @@
 # capturar_tweets
-Faz uma busca por palavras no tweeter e armazena o resultado no MongoDB.
+Faz uma busca por tweets considerando um conjunto de palavras, e armazena no MongoDB os resultados.

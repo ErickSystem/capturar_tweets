@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.com.si.bigdata</groupId>
+  <artifactId>maven-project-bigdata</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <properties>
+		<!-- other plugin versions -->
+		<version.compiler.plugin>3.1</version.compiler.plugin>
+		<version.exec.plugin>1.2.1</version.exec.plugin>
+		<version.war.plugin>2.1.1</version.war.plugin>
+
+		<!-- maven-compiler-plugin -->
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+  
+  <dependencies>
+  
+	  <!-- https://mvnrepository.com/artifact/org.twitter4j/twitter4j-stream -->
+	<dependency>
+	    <groupId>org.twitter4j</groupId>
+	    <artifactId>twitter4j-stream</artifactId>
+	    <version>3.0.4</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.twitter4j/twitter4j-core -->
+	<dependency>
+	    <groupId>org.twitter4j</groupId>
+	    <artifactId>twitter4j-core</artifactId>
+	    <version>3.0.4</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
+	<dependency>
+	    <groupId>org.mongodb</groupId>
+	    <artifactId>mongo-java-driver</artifactId>
+	    <version>2.11.3</version>
+	</dependency>
+  
+  </dependencies>
+  
+  <build>
+        <plugins>
+        	
+        	<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.compiler.plugin}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-dependency-plugin</artifactId>
+			    <executions>
+			        <execution>
+			            <id>copy</id>
+			            <phase>package</phase>
+			            <goals>
+			                <goal>copy-dependencies</goal>
+			            </goals>
+			            <configuration>
+			                <outputDirectory>
+			                    ${project.build.directory}/lib
+			                </outputDirectory>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+			
+            <plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-jar-plugin</artifactId>
+			    <version>2.3.2</version>
+			    <configuration>
+			        <archive>
+			            <manifest>
+			                <addClasspath>true</addClasspath>
+			                <classpathPrefix>lib/</classpathPrefix>
+			                <mainClass>br.com.si.mining.Main</mainClass>
+			            </manifest>
+			        </archive>
+			    </configuration>
+			</plugin>
+        </plugins>
+    </build>
+    
+</project>
