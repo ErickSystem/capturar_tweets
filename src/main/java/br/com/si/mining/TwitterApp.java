@@ -19,7 +19,7 @@ public class TwitterApp {
 	private DB banco;
 	private DBCollection collection;
 	
-	public void capturaTweets() throws InterruptedException{
+	public void capturaTweets(String palavra) throws InterruptedException{
 		
 		TwitterStream twitterStream = 
 				new TwitterStreamFactory(cb.build()).getInstance();
@@ -67,7 +67,7 @@ public class TwitterApp {
 
 		};
 		
-		String palavras[] = {"BigData"};
+		String palavras[] = {palavra};
 		FilterQuery fq = new FilterQuery();
 		fq.track(palavras);
 		twitterStream.addListener(listener);
